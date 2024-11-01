@@ -1,0 +1,9 @@
+# install&configure postgre
+- name: install system dependencies
+  ansible.builtin.yum:
+    name:
+      - postgresql
+      - postgresql-server
+      - postgresql-devel
+    state: present
+    update_cache: true
