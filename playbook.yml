@@ -1,7 +1,7 @@
 ---
-- name: ansible app deploy practice
+- name: deploy semaphore
   hosts: "all"
   become: true
   gather_facts: no
   roles:
-    - postgre
+    - docker
