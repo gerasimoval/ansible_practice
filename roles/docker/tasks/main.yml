@@ -1,0 +1,12 @@
+# docker installation
+- name: update all pkg
+  ansible.bultin.yum:
+    name: '*'
+    state: latest
+
+- name: install docker
+  package:
+    name: docker-ce
+    state: latest
+  become: true 
+  
