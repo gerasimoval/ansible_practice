@@ -6,18 +6,17 @@
     enabled: yes
     
 - name: docker compose up
-  community.docker.docker_compose:
-    project_name: semaphore
-    definition:
-      ports: 3000:3000
-      image: semaphoreui/semaphore:v2.10.32
-      environment:
-        SEMAPHORE_DB_DIALECT: postgres
-        SEMAPHORE_DB_HOST: localhost
-        SEMAPHORE_DB_NAME: semaphore
-        SEMPAHORE_DB_USER: root
-        SEMAPHORE_ADMIN: admin
-        SEMPAHORE_ADMIN_PASSWORD: admin
-        SEMAPHORE_ADMIN_NAME: Admin
-        SEMAPHORE_ADMIN_EMAIL: admin:@localhost
-            
+  community.docker.docker_container:
+    name: semaphore
+    cleanup: true
+    ports: 3000:3000
+    image: semaphoreui/semaphore:v2.10.32
+    env:
+      SEMAPHORE_DB_DIALECT=postgres
+      SEMAPHORE_DB_HOST=localhost
+      SEMAPHORE_DB_NAME=semaphore
+      SEMPAHORE_DB_USER=root
+      SEMAPHORE_ADMIN=admin
+      SEMPAHORE_ADMIN_PASSWORD=admin
+      SEMAPHORE_ADMIN_NAME=Admin
+      SEMAPHORE_ADMIN_EMAIL=admin:@localhost

@@ -4,10 +4,10 @@
     name: yum-utils
     state: latest
 
-- name: install device-mapper-persistent-data
-  yum:
-    name: device-mapper-persistent-data
-    state: latest
+#- name: install device-mapper-persistent-data
+#  yum:
+#    name: device-mapper-persistent-data
+#    state: latest
 
 - name: add docker key
   rpm_key:
@@ -32,8 +32,18 @@
       - docker-buildx-plugin
       - docker-compose-plugin
 
-- name: start docker daemon
-  systemd:
-    state: started
-    enabled: yes
+- name: install py dependencies
+  yum:
+    update_cache: yes
+    name: python3-pip
+    state: latest
+
+- name: install docker sdk for py
+  pip:
     name: docker
+
+#- name: start docker daemon
+#  systemd:
+#    state: started
+#    enabled: yes
+#    name: docker
