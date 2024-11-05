@@ -1,0 +1,18 @@
+# deploy semaphore image
+- name: check docker is active
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: set docker-compose
+  template:
+    src: roles/app-deploy/files/compose.j2
+    dest: /home/vagrant/docker-compose.yml
+
+- name: start container
+  community.docker.docker_compose_v2:
+    project_src: /home/vagrant/
+    files:
+    - docker-compose.yml
+  register: output
